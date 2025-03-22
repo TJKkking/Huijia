@@ -1,0 +1,137 @@
+.release-page {
+  padding: 16px;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 44px;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: white;
+  color: #999;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.category-section {
+  margin-top: 16px;
+}
+
+.section-title {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.category-options {
+  display: flex;
+  overflow-x: auto;
+}
+
+.category-btn {
+  padding: 8px 16px;
+  margin-right: 8px;
+  border-radius: 12px;
+  background-color: #f8f6fc;
+  color: #999;
+  cursor: pointer;
+}
+
+.category-btn.selected {
+  background-color: #8b5cf6;
+  color: white;
+}
+
+.input-section {
+  margin-top: 16px;
+}
+
+.title-input,
+.text-input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background-color: #f8f6fc;
+}
+
+.text-input {
+  height: 100px;
+}
+
+.image-upload-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.image-wrapper {
+  position: relative;
+}
+
+.uploaded-image {
+  width: 90px;
+  height: 90px;
+  border-radius: 8px;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.upload-btn {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed #999;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.contact-section {
+  margin-top: 16px;
+}
+
+.contact-input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 10px;
+}
+
+.anonymous-switch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.release-btn {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  height: 48px;
+  background-color: #8b5cf6;
+  color: white;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.release-btn:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
