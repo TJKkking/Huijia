@@ -8,7 +8,6 @@ interface PageLayoutProps {
   children: ReactNode;
   onScrollToLower?: ScrollViewProps["onScrollToLower"];
   scrollProps?: Omit<ScrollViewProps, "scrollY" | "onScrollToLower">;
-  fixedTopHeight?: number;
 }
 
 export default function PageLayout({
@@ -17,7 +16,6 @@ export default function PageLayout({
   children,
   onScrollToLower,
   scrollProps,
-  fixedTopHeight,
 }: PageLayoutProps) {
   const [scrollHeight, setScrollHeight] = useState("100vh");
 
@@ -25,20 +23,27 @@ export default function PageLayout({
     const systemInfo = Taro.getSystemInfoSync();
     const windowHeight = systemInfo.windowHeight;
 
-    const fallbackFixed = 300;
-    const topHeight = fixedTopHeight ?? fallbackFixed;
-    const calculatedHeight = windowHeight - topHeight;
-    setScrollHeight(`${calculatedHeight}px`);
-  }, [fixedTopHeight]);
+    Taro.createSelectorQuery()
+      .select("#fixed-header")
+      .boundingClientRect((rect) => {
+        if (rect) {
+          const topHeight = rect.height;
+          const calculatedHeight = windowHeight - topHeight - 6;
+          setScrollHeight(`${calculatedHeight}px`);
+        }
+      })
+      .exec();
+  }, []);
 
   return (
     <View
       className="w-full h-screen flex flex-col"
       style={{ overflow: "hidden" }}
     >
-      {header}
-
-      {topContent && <View className="px-2">{topContent}</View>}
+      <View id="fixed-header">
+        {header}
+        {topContent && <View className="px-2">{topContent}</View>}
+      </View>
 
       <ScrollView
         scrollY
