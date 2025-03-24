@@ -15,7 +15,7 @@ export default function Index() {
     <PageLayout
       header={
         <Header
-          title="导航栏"
+          title="代号: 酱油"
           back={false}
           home={false}
           color="rgba(0, 0, 0, 1)"
