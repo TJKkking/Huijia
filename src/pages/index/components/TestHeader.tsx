@@ -46,7 +46,7 @@ const TestHeader: React.FC<TestHeaderProps> = ({
   delta = 1,
 }) => {
   const [systemInfo, setSystemInfo] = useState<SystemInfo | null>(null);
-  const [navigationStyle, setNavigationStyle] = useState<string>("");
+  const [navigationStyle, setNavigationStyle] = useState<CSSProperties>({});
   const [navBarLeftStyle, setNavBarLeftStyle] = useState<CSSProperties>({});
 
   const getSystemInfo = () => {
@@ -56,12 +56,12 @@ const TestHeader: React.FC<TestHeaderProps> = ({
       return app.globalSystemInfo;
     }
 
-    const sysInfo = Taro.getSystemInfoSync();
+    const sysInfo = Taro.getWindowInfo();
+    const deviceInfo = Taro.getDeviceInfo();
     console.log("获取系统信息:", sysInfo);
 
-    const ios = !!sysInfo.system.toLowerCase().includes("ios");
+    const ios = !!deviceInfo.system.toLowerCase().includes("ios");
     const rect = getMenuButtonBoundingClientRect(sysInfo);
-    console.log("胶囊按钮信息:", rect);
 
     let navBarHeight = 0;
     let navBarExtendHeight = 0;
@@ -79,8 +79,9 @@ const TestHeader: React.FC<TestHeaderProps> = ({
       });
     } else {
       const gap = rect.top - sysInfo.statusBarHeight;
-      navBarHeight = sysInfo.statusBarHeight + 2 * gap + rect.height;
+      navBarHeight = 2 * gap + rect.height;
       navBarExtendHeight = ios ? 4 : 0;
+      console.log("状态栏高度：", sysInfo.statusBarHeight);
       console.log("正常计算导航栏高度:", {
         statusBarHeight: sysInfo.statusBarHeight,
         navBarHeight,
@@ -165,24 +166,29 @@ const TestHeader: React.FC<TestHeaderProps> = ({
     const leftWidth = windowWidth - capsulePosition.left;
     console.log("计算边距:", { rightDistance, leftWidth });
 
-    const navigationbarinnerStyle = `
-      color: ${color};
-      background: rgba(200, 200, 200, 0.3); /* 浅灰色 - 整体导航栏 */
-      height: ${navBarHeight + navBarExtendHeight}px;
-      
-      padding-bottom: ${navBarExtendHeight}px;
-      display: flex;
-      align-items: center;
-    `;
-    console.log("导航栏样式:", navigationbarinnerStyle);
+    // const navigationbarinnerStyle = `
+    //   color: ${color};
+    //   background: rgba(57, 93, 253, 0.3);
+    //   height: ${navBarHeight + navBarExtendHeight}px;
+    //   display: flex;
+    //   align-items: center;
+    // `;
+    // console.log("导航栏样式:", navigationbarinnerStyle);
+    // setNavigationStyle(navigationbarinnerStyle);
+
+    const navStyle: CSSProperties = {
+      color,
+      background: "rgba(57, 93, 253, 0.3);",
+      height: `${navBarHeight}px`,
+      // height: `${navBarHeight + navBarExtendHeight}px`,
+      // paddingBottom: `${navBarExtendHeight}px`,
+      display: "flex",
+      alignItems: "center",
+    };
+    setNavigationStyle(navStyle);
 
     let navBarLeft: CSSProperties = {};
-    if (back && !home) {
-      navBarLeft = {
-        width: `${capsulePosition.width}px`,
-        height: `${capsulePosition.height}px`,
-      };
-    } else if (!back && home) {
+    if ((back && !home) || (!back && home)) {
       navBarLeft = {
         width: `${capsulePosition.width}px`,
         height: `${capsulePosition.height}px`,
@@ -198,10 +204,8 @@ const TestHeader: React.FC<TestHeaderProps> = ({
         height: `0px`,
       };
     }
-    console.log("左侧样式:", navBarLeft);
-
-    setNavigationStyle(navigationbarinnerStyle);
     setNavBarLeftStyle(navBarLeft);
+    console.log("左侧样式:", navBarLeft);
   };
 
   const handleBack = () => {

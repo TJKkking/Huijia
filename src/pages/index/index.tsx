@@ -1,63 +1,56 @@
-import { View, Button } from "@tarojs/components";
+import { View, ScrollView } from "@tarojs/components";
 import { useLoad, navigateTo } from "@tarojs/taro";
-import "./index.scss";
+import Header from "./components/Header";
+import PostList from "./components/PostList";
+import Segmented from "./components/Segmented";
+import Tabs from "./components/Tabs";
+import PageLayout from "./components/PageLayout";
 
 export default function Index() {
   useLoad(() => {
     console.log("Page loaded.");
   });
 
-  const handleNavigateToPostPublish = () => {
-    navigateTo({ url: "/pages/post/index" });
-  };
-
-  const handleNavigateToPostDetail = () => {
-    navigateTo({ url: "/pages/post-detail/index" });
-  };
-
-  const handleNavigateToPostCreate = () => {
-    navigateTo({ url: "/pages/post-create/index" });
-  };
-
-  const handleNavigateToMessageCenter = () => {
-    navigateTo({ url: "/pages/message-center/index" });
-  };
-
-  const handleNavigateToUser = () => {
-    navigateTo({ url: "/pages/user/index" });
-  };
-
   return (
-    <View className="index">
-      <View className="button-list">
-        <Button
-          className="post-publish-btn"
-          onClick={handleNavigateToPostPublish}
-        >
-          Go to Publish Page
-        </Button>
-        <Button
-          className="post-publish-btn"
-          onClick={handleNavigateToPostDetail}
-        >
-          Go to Post Detail Page
-        </Button>
-        <Button
-          className="post-publish-btn"
-          onClick={handleNavigateToPostCreate}
-        >
-          Go to Post Create Page
-        </Button>
-        <Button
-          className="post-publish-btn"
-          onClick={handleNavigateToMessageCenter}
-        >
-          Go to Message Center
-        </Button>
-        <Button className="post-publish-btn" onClick={handleNavigateToUser}>
-          Go to User Center
-        </Button>
-      </View>
-    </View>
+    <PageLayout
+      header={
+        <Header
+          title="导航栏"
+          back={false}
+          home={false}
+          color="rgba(0, 0, 0, 1)"
+        />
+      }
+      topContent={
+        <>
+          <View className="mt-2 flex justify-center items-center">
+            <Segmented
+              block
+              size="large"
+              maxItemWidth={88}
+              maxContainerWidth={360}
+              options={["全部", "求助", "信息", "吐槽"]}
+              value={"全部"}
+              onChange={() => {}}
+            />
+          </View>
+
+          <View className="mt-3">
+            <Tabs
+              defaultActiveKey="new"
+              activeLineMode="auto"
+              onChange={(key) => console.log(key)}
+            >
+              <Tabs.Tab title="最新" key="new" />
+              <Tabs.Tab title="最热" key="hot" />
+              <Tabs.Tab title="精选" key="best" />
+            </Tabs>
+          </View>
+        </>
+      }
+      onScrollToLower={() => console.log("加载更多")}
+    >
+      <PostList />
+    </PageLayout>
   );
 }
