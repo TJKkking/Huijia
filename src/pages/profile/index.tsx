@@ -9,38 +9,31 @@ export default function Profile() {
   return (
     <PageLayout
       header={<Header title="个人中心" back={false} />}
-      fixedTopHeight={100}
+      // fixedTopHeight={100}
     >
       <UserInfoCard />
 
       <View className="px-4 mt-4">
-        <ProfileGrid />
+        <ProfileGrid
+          items={[
+            { icon: "star", label: "我的收藏" },
+            { icon: "comment", label: "我的评论" },
+            { icon: "mail", label: "我的发布" },
+          ]}
+        />
       </View>
 
       <View className="px-4 mt-4">
-        {/* <SettingList
-          items={[
-            [
-              { icon: "🎓", label: "校园认证", onClick: () => {} },
-              { icon: "📝", label: "意见反馈", onClick: () => {} },
-              { icon: "❓", label: "关于我们", onClick: () => {} },
-            ],
-            [
-              { icon: "⚙️", label: "设置", onClick: () => {} },
-              { icon: "🚪", label: "退出登录", onClick: () => {} },
-            ],
-          ]}
-        /> */}
         <SettingList
           lists={[
             [
-              { icon: "🎓", label: "校园认证" },
-              { icon: "📝", label: "意见反馈" },
-              { icon: "❓", label: "关于我们" },
+              { icon: "verified", label: "校园认证" },
+              { icon: "feedback", label: "意见反馈" },
+              { icon: "info_l", label: "关于我们" },
             ],
             [
-              { icon: "⚙️", label: "设置" },
-              { icon: "🚪", label: "退出登录" },
+              { icon: "settings", label: "设置" },
+              { icon: "logout", label: "退出登录" },
             ],
           ]}
         />

@@ -21,7 +21,7 @@ const PostContent: FC<PostContentProps> = ({
   isFavorited,
   title,
   content,
-  images = [],
+  images = [""],
   time,
 }) => {
   return (

@@ -12,7 +12,7 @@ const PostDetailPage = () => {
   const [comments, setComments] = useState([
     {
       id: "1",
-      avatar: "/assets/avatar-a.png",
+      avatar: "https://ootao.cn/static/avatar.jpg",
       nickname: "Alice",
       content:
         "这句话后来演变成成语“饮水思源”这个成语这句话后来演变成成语“饮水思源”这个成语这句话后来演变成成语“饮水思源”这个成语这句话后来演变成成语“饮水思源”这个成语这句话后来演变成成语“饮水思源”这个成语这句话后来演变成成语“饮水思源”这个成语",
@@ -20,28 +20,28 @@ const PostDetailPage = () => {
     },
     {
       id: "2",
-      avatar: "/assets/avatar-a.png",
+      avatar: "https://ootao.cn/static/avatar.jpg",
       nickname: "Alice",
       content: "再次让人感受到 DeepSeek 等开源模型……",
       time: "2025年03月21日 09:47",
     },
     {
       id: "3",
-      avatar: "/assets/avatar-b.png",
+      avatar: "https://ootao.cn/static/avatar.jpg",
       nickname: "Bob",
       content: "这是一个测试评论。",
       time: "2025年03月22日 10:00",
     },
     {
       id: "4",
-      avatar: "/assets/avatar-c.png",
+      avatar: "https://ootao.cn/static/avatar.jpg",
       nickname: "Charlie",
       content: "另一个测试评论。",
       time: "2025年03月22日 10:30",
     },
     {
       id: "5",
-      avatar: "/assets/avatar-d.png",
+      avatar: "https://ootao.cn/static/avatar.jpg",
       nickname: "Dave",
       content: "最后一个测试评论。",
       time: "2025年03月22日 11:00",
@@ -53,20 +53,21 @@ const PostDetailPage = () => {
   });
 
   return (
-    <PageLayout
-      header={<Header title="#发布" back={true} />}
-      fixedTopHeight={88}
-    >
+    <PageLayout header={<Header title="#发布" back={true} />}>
       <View className="px-4 py-3">
         <PostContent
-          avatar="/assets/avatar-a.png"
+          avatar="https://ootao.cn/static/avatar.jpg"
           nickname="Alice"
           tag="info"
           favoriteCount={8}
           isFavorited={true}
           title="这是标题"
           content="这句话后来演变成成语“饮水思源”这个成语这句话后来演变成成语“饮水思源”这个成语这句话后来演变成成语“饮水思源”这个成语这句话后来演变成成语“饮水思源”这个成语这句话后来演变成成语“饮水思源”这个成语这句话后来演变成成语“饮水思源”这个成语"
-          images={["/assets/dog1.jpg", "/assets/dog2.jpg", "/assets/dog3.jpg"]}
+          images={[
+            "https://ootao.cn/static/dog.jpg",
+            "https://ootao.cn/static/dog.jpg",
+            "https://ootao.cn/static/dog.jpg",
+          ]}
           time="今天 18:34"
         />
 

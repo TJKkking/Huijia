@@ -1,8 +1,10 @@
 import { View, Text } from "@tarojs/components";
 import { FC } from "react";
+import IconFont from "@/components/iconfont";
+import { IconNames } from "@/components/iconfont";
 
 interface SettingListProps {
-  lists: { icon: string; label: string }[][];
+  lists: { icon: IconNames; label: string }[][];
 }
 
 const SettingList: FC<SettingListProps> = ({ lists }) => {
@@ -15,7 +17,12 @@ const SettingList: FC<SettingListProps> = ({ lists }) => {
         >
           {list.map((item, index) => (
             <View key={index} className="flex items-center px-4 py-3">
-              <Text className="mr-2 text-base">{item.icon}</Text>
+              <IconFont
+                name={item.icon}
+                size={55}
+                color="#6750A4"
+                style={{ marginRight: 12 }}
+              />
               <Text className="text-sm text-m3-onSurfaceVariant">
                 {item.label}
               </Text>

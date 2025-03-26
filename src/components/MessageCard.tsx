@@ -45,7 +45,7 @@ const MessageCard: FC<MessageCardProps> = ({
           </View>
         ) : (
           <Image
-            src={avatar}
+            src={avatar || ""}
             className="w-10 h-10 bg-gray-200 rounded-full"
             mode="aspectFill"
           />

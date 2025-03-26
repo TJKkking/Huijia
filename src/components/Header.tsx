@@ -1,6 +1,7 @@
 import React, { useEffect, useState, CSSProperties } from "react";
 import Taro from "@tarojs/taro";
 import { View, Text, Image, Input } from "@tarojs/components";
+import IconFont from "@/components/iconfont";
 
 interface HeaderProps {
   extClass?: string;
@@ -213,9 +214,12 @@ export function HeaderSearch({ width = 120 }: { width?: number }) {
       className="flex items-center px-3 py-1 rounded-full bg-m3-surfaceContainerLow dark:bg-m3-dark-surfaceContainerLow"
       style={{ width: `${width}px` }}
     >
-      <Text className="text-base text-m3-outline dark:text-m3-dark-outline">
-        🔍
-      </Text>
+      <IconFont
+        name="search"
+        size={35}
+        color="#79747E" // m3-outline
+        style={{ display: "block" }}
+      />
       <Input
         className="flex-1 ml-2 text-sm text-m3-onSurface dark:text-m3-dark-onSurface"
         confirmType="search"

@@ -7,7 +7,7 @@ const UserInfoCard: FC = () => {
     <View className="flex items-center justify-between px-4 py-3 shadow-sm bg-m3-surfaceContainer">
       <View className="flex items-center">
         <Image
-          src="/assets/avatar-placeholder.png"
+          src="https://ootao.cn/static/avatar.jpg"
           className="mr-3 bg-gray-300 rounded-full w-14 h-14"
           mode="aspectFill"
         />

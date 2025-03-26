@@ -11,7 +11,7 @@ const messages = [
   },
   {
     type: "user",
-    avatar: "/assets/avatar-zs.png",
+    avatar: "https://ootao.cn/static/avatar.jpg",
     title: "张三 回复了你",
     description: "我觉得你的观点很有道理！",
     postTitle: "AI 会不会取代程序员？",
@@ -21,7 +21,7 @@ const messages = [
   },
   {
     type: "user",
-    avatar: "/assets/avatar-anon.png",
+    avatar: "https://ootao.cn/static/avatar.jpg",
     title: "匿名用户 回复了你",
     description: "可以看看这篇资料：https://xx.com",
     postTitle: "数据库资料推荐",
