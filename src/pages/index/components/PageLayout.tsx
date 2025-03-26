@@ -1,6 +1,7 @@
 import { View, ScrollView, ScrollViewProps } from "@tarojs/components";
 import { ReactNode, useEffect, useState } from "react";
 import Taro from "@tarojs/taro";
+import SurfaceColorReference from "./SurfaceColorReference";
 
 interface PageLayoutProps {
   header?: ReactNode;
@@ -37,13 +38,15 @@ export default function PageLayout({
 
   return (
     <View
-      className="w-full h-screen flex flex-col"
+      className="flex flex-col w-full h-screen bg-m3-background"
       style={{ overflow: "hidden" }}
     >
       <View id="fixed-header">
         {header}
         {topContent && <View className="px-2">{topContent}</View>}
       </View>
+
+      {/* <SurfaceColorReference /> */}
 
       <ScrollView
         scrollY
