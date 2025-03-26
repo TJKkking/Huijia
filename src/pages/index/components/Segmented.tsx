@@ -45,7 +45,7 @@ export default function Segmented({
   return (
     <View
       className={classNames(
-        "rounded-full bg-gray-100 p-1 transition-all",
+        "rounded-full p-1 transition-all",
         block ? "w-full flex" : "inline-flex",
         className
       )}
@@ -61,8 +61,8 @@ export default function Segmented({
               "rounded-full transition-all cursor-pointer leading-none flex items-center justify-center text-center flex-1",
               sizeClasses[size],
               isActive
-                ? "bg-white shadow text-purple-600 font-semibold"
-                : "text-gray-500"
+                ? "bg-surface shadow text-primary font-semibold"
+                : "text-secondary"
             )}
             onClick={() => onChange(opt)}
           >
