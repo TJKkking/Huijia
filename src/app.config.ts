@@ -19,9 +19,9 @@ export default defineAppConfig({
 
   tabBar: {
     color: "#999999",
-    selectedColor: "#7B61FF",
-    backgroundColor: "#ffffff",
-    borderStyle: "black",
+    selectedColor: "#D0BCFF",
+    backgroundColor: "#F7F2FA",
+    borderStyle: "white",
     list: [
       {
         pagePath: "pages/index/index",
@@ -30,7 +30,8 @@ export default defineAppConfig({
         selectedIconPath: "assets/icons/home_7B61FF.png",
       },
       {
-        pagePath: "pages/publish/index",
+        // pagePath: "pages/publish/index",
+        pagePath: "pages/post-detail/index",
         text: "发布",
         iconPath: "assets/icons/edit_square_gray.png",
         selectedIconPath: "assets/icons/edit_square_7B61FF.png",

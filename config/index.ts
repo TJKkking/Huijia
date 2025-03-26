@@ -5,10 +5,17 @@ import { UnifiedViteWeappTailwindcssPlugin as uvtw } from "weapp-tailwindcss/vit
 
 import devConfig from "./dev";
 import prodConfig from "./prod";
+import path from "path";
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
 export default defineConfig<"vite">(async (merge, { command, mode }) => {
   const baseConfig: UserConfigExport<"vite"> = {
+    alias: {
+      "@/components": path.resolve(__dirname, "..", "src/components"),
+      "@/utils": path.resolve(__dirname, "..", "src/utils"),
+      "@/package": path.resolve(__dirname, "..", "package.json"),
+      "@/project": path.resolve(__dirname, "..", "project.config.json"),
+    },
     compiler: {
       type: "vite",
       vitePlugins: [
