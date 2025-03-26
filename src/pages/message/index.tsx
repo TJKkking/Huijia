@@ -1,6 +1,9 @@
 import { View, Button } from "@tarojs/components";
 import { useLoad, navigateTo } from "@tarojs/taro";
 import "./index.scss";
+import PageLayout from "@/components/PageLayout";
+import MessageList from "@/components/MessageList";
+import Header from "@/components/Header";
 
 export default function MessageCenter() {
   useLoad(() => {
@@ -28,37 +31,11 @@ export default function MessageCenter() {
   };
 
   return (
-    <View className="message-center-page">
-      <View className="text-[#a445ed] text-[100px]">Hello world!</View>
-      <View className="button-list">
-        <Button
-          className="post-publish-btn"
-          onClick={handleNavigateToPostPublish}
-        >
-          Go to Publish Page
-        </Button>
-        <Button
-          className="post-publish-btn"
-          onClick={handleNavigateToPostDetail}
-        >
-          Go to Post Detail Page
-        </Button>
-        <Button
-          className="post-publish-btn"
-          onClick={handleNavigateToPostCreate}
-        >
-          Go to Post Create Page
-        </Button>
-        <Button
-          className="post-publish-btn"
-          onClick={handleNavigateToMessageCenter}
-        >
-          Go to Message Center
-        </Button>
-        <Button className="post-publish-btn" onClick={handleNavigateToUser}>
-          Go to User Center
-        </Button>
-      </View>
-    </View>
+    <PageLayout
+      header={<Header title="消息" back={true} />}
+      fixedTopHeight={88}
+    >
+      <MessageList />
+    </PageLayout>
   );
 }

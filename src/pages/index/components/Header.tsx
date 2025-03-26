@@ -4,8 +4,6 @@ import { View, Text, Image, Input } from "@tarojs/components";
 
 interface HeaderProps {
   extClass?: string;
-  background?: string;
-  backgroundColorTop?: string;
   color?: string;
   title?: string;
   searchText?: string;
@@ -33,9 +31,7 @@ interface SystemInfo {
 
 const Header: React.FC<HeaderProps> = ({
   extClass = "",
-  background = "#ffffff",
-  backgroundColorTop = "#ffffff",
-  color = "#000000",
+  color = "#1C1B1F",
   title = "",
   searchBar = false,
   back = false,
@@ -130,36 +126,19 @@ const Header: React.FC<HeaderProps> = ({
 
     const navStyle: CSSProperties = {
       color,
-      background,
+      backgroundColor: "#ECE6F0",
       height: `${navBarHeight}px`,
       display: "flex",
       alignItems: "center",
     };
     setNavigationStyle(navStyle);
 
-    // 与胶囊按钮对称
     let navBarLeft: CSSProperties = {
       width: `${capsulePosition.width}px`,
       height: `${capsulePosition.height}px`,
       marginLeft: `${systemInfo.windowWidth - capsulePosition.right}px`,
       padding: `0 0 0 0`,
     };
-    // if ((back && !home) || (!back && home)) {
-    //   navBarLeft = {
-    //     width: `${capsulePosition.width}px`,
-    //     height: `${capsulePosition.height}px`,
-    //   };
-    // } else if (back && home) {
-    //   navBarLeft = {
-    //     width: `${capsulePosition.width * 2}px`,
-    //     height: `${capsulePosition.height}px`,
-    //   };
-    // } else {
-    //   navBarLeft = {
-    //     width: `0px`,
-    //     height: `0px`,
-    //   };
-    // }
     setNavBarLeftStyle(navBarLeft);
   };
 
@@ -182,53 +161,30 @@ const Header: React.FC<HeaderProps> = ({
     if (systemInfo) {
       setStyle();
     }
-  }, [systemInfo, background, color, back, home, title]);
+  }, [systemInfo, color, back, home, title]);
 
   if (!systemInfo) return null;
 
   return (
     <View
-      className={`w-full ${extClass}`}
-      style={{ background: backgroundColorTop }}
+      className={`w-full ${extClass} bg-m3-surfaceContainerHigh dark:bg-m3-dark-surfaceContainerHigh`}
     >
       <View
         style={{ height: `${systemInfo.statusBarHeight}px`, width: "100%" }}
       />
       <View className="w-full" style={navigationStyle}>
-        <View
-          className="flex "
-          style={{
-            ...navBarLeftStyle,
-            // backgroundColor: "rgba(255, 0, 0, 0.3)",
-          }}
-        >
-          {/* <AtSearchBar
-            className="w-full"
-            customStyle="width: 80%; padding: 0;"
-            value={""}
-            placeholder=""
-            // maxLength={systemInfo.capsulePosition.width}
-            showActionButton={false}
-            onChange={(value) => console.log(value)}
-          /> */}
-          {/* <View className="bg-gray-100 rounded-full px-3 py-1 flex items-center">
-            <Text className="text-gray-400 text-base">🔍</Text>
-            <Input
-              placeholder="搜索"
-              className="flex-1 ml-2 text-sm text-gray-700"
-            />
-          </View> */}
+        <View className="flex" style={navBarLeftStyle}>
           <HeaderSearch width={systemInfo.capsulePosition.width * 0.8} />
         </View>
         <View
-          className="flex-1 flex items-center justify-center"
+          className="flex items-center justify-center flex-1"
           style={{
             height: `${systemInfo.capsulePosition.height}px`,
             lineHeight: `${systemInfo.capsulePosition.height}px`,
           }}
         >
           <View style={{ padding: "2px 4px" }}>
-            <Text className="text-base font-medium" style={{ color }}>
+            <Text className="text-base font-medium text-m3-onSurface dark:text-m3-dark-onSurface">
               {title}
             </Text>
           </View>
@@ -252,12 +208,14 @@ export default Header;
 export function HeaderSearch({ width = 120 }: { width?: number }) {
   return (
     <View
-      className="bg-gray-100 rounded-full px-3 py-1 flex items-center"
+      className="flex items-center px-3 py-1 rounded-full bg-m3-surfaceContainerLow dark:bg-m3-dark-surfaceContainerLow"
       style={{ width: `${width}px` }}
     >
-      <Text className="text-gray-400 text-base">🔍</Text>
+      <Text className="text-base text-m3-outline dark:text-m3-dark-outline">
+        🔍
+      </Text>
       <Input
-        className="text-sm text-gray-700 ml-2 flex-1"
+        className="flex-1 ml-2 text-sm text-m3-onSurface dark:text-m3-dark-onSurface"
         confirmType="search"
         placeholder=""
       />

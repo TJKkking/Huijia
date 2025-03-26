@@ -1,10 +1,10 @@
 import { View, ScrollView } from "@tarojs/components";
 import { useLoad, navigateTo } from "@tarojs/taro";
-import Header from "./components/Header";
+import Header from "@/components/Header";
 import PostList from "./components/PostList";
 import Segmented from "./components/Segmented";
 import Tabs from "./components/Tabs";
-import PageLayout from "./components/PageLayout";
+import PageLayout from "@/components/PageLayout";
 
 export default function Index() {
   useLoad(() => {
@@ -13,17 +13,10 @@ export default function Index() {
 
   return (
     <PageLayout
-      header={
-        <Header
-          title="代号: 酱油"
-          back={false}
-          home={false}
-          color="rgba(0, 0, 0, 1)"
-        />
-      }
+      header={<Header title="代号: 酱油" back={false} home={false} />}
       topContent={
         <>
-          <View className="mt-2 flex justify-center items-center">
+          <View className="flex items-center justify-center mt-2">
             <Segmented
               block
               size="large"
@@ -32,6 +25,7 @@ export default function Index() {
               options={["全部", "求助", "信息", "吐槽"]}
               value={"全部"}
               onChange={() => {}}
+              className="text-primary border-outline"
             />
           </View>
 
