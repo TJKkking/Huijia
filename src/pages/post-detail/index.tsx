@@ -1,5 +1,5 @@
 import { View } from "@tarojs/components";
-import { useLoad } from "@tarojs/taro";
+import { useLoad, useRouter } from "@tarojs/taro";
 import { useState } from "react";
 import Header from "@/components/Header";
 import PageLayout from "@/components/PageLayout";
@@ -8,6 +8,8 @@ import CommentHeader from "@/components/CommentHeader";
 import CommentList from "@/components/CommentList";
 
 const PostDetailPage = () => {
+  const router = useRouter();
+  const postId = router.params.id;
   const [commentOrder, setCommentOrder] = useState<"asc" | "desc">("desc");
   const [comments, setComments] = useState([
     {
@@ -51,6 +53,13 @@ const PostDetailPage = () => {
   useLoad(() => {
     console.log("Post detail loaded");
   });
+
+  // useLoad(() => {
+  //   const post = mockPosts.find((p) => p.id === postId);
+  //   if (post) {
+  //     setPost(post);
+  //   }
+  // });
 
   return (
     <PageLayout header={<Header title="#发布" back={true} />}>

@@ -1,4 +1,3 @@
-import { View, Button } from "@tarojs/components";
 import { useLoad, navigateTo } from "@tarojs/taro";
 import "./index.scss";
 import PageLayout from "@/components/PageLayout";
@@ -33,7 +32,7 @@ export default function MessageCenter() {
   return (
     <PageLayout
       header={<Header title="消息" back={true} />}
-      fixedTopHeight={88}
+      // fixedTopHeight={88}
     >
       <MessageList />
     </PageLayout>
