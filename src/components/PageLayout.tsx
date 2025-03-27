@@ -20,19 +20,26 @@ export default function PageLayout({
   const [scrollHeight, setScrollHeight] = useState("100vh");
 
   useEffect(() => {
-    const systemInfo = Taro.getSystemInfoSync();
-    const windowHeight = systemInfo.windowHeight;
+    const queryHeaderHeight = async () => {
+      const systemInfo = Taro.getSystemInfoSync();
+      const windowHeight = systemInfo.windowHeight;
+      const statusbarHeight = systemInfo.statusBarHeight;
+      // console.log("statusbarHeight", statusbarHeight);
 
-    Taro.createSelectorQuery()
-      .select("#fixed-header")
-      .boundingClientRect((rect) => {
-        if (rect) {
-          const topHeight = rect.height;
-          const calculatedHeight = windowHeight - topHeight - 6;
-          setScrollHeight(`${calculatedHeight}px`);
-        }
-      })
-      .exec();
+      Taro.createSelectorQuery()
+        .select("#fixed-header")
+        .boundingClientRect((rect) => {
+          if (rect) {
+            const topHeight = rect.height;
+            const calculatedHeight =
+              windowHeight - topHeight + (statusbarHeight || 47) + 7;
+            setScrollHeight(`${calculatedHeight}px`);
+          }
+        })
+        .exec();
+    };
+
+    queryHeaderHeight();
   }, []);
 
   return (
@@ -50,7 +57,7 @@ export default function PageLayout({
       <ScrollView
         scrollY
         style={{ height: scrollHeight }}
-        className="pb-6"
+        className="pb-1"
         onScrollToLower={onScrollToLower}
         {...scrollProps}
       >

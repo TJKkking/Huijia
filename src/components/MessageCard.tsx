@@ -1,6 +1,7 @@
 import { View, Text, Image } from "@tarojs/components";
 import { FC } from "react";
 import classNames from "classnames";
+import IconFont from "@/components/iconfont";
 
 interface MessageCardProps {
   type: "system" | "user";
@@ -40,8 +41,8 @@ const MessageCard: FC<MessageCardProps> = ({
       {/* 头像 / 系统图标 */}
       <View className="relative mr-3">
         {type === "system" ? (
-          <View className="flex items-center justify-center w-10 h-10 text-lg font-bold rounded-full bg-m3-primary/20 dark:bg-m3-dark-primary/20 text-m3-primary dark:text-m3-dark-primary">
-            📢
+          <View className="flex items-center justify-center w-10 h-10 rounded-full bg-m3-primary/20 dark:bg-m3-dark-primary/20">
+            <IconFont name="campaign" size={75} color="#6750A4" />
           </View>
         ) : (
           <Image

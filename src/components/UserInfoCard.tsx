@@ -1,8 +1,13 @@
 import { View, Text, Image } from "@tarojs/components";
+import Taro from "@tarojs/taro";
 import { FC } from "react";
 
 // 用户信息卡片
 const UserInfoCard: FC = () => {
+  const handleEditProfile = () => {
+    Taro.navigateTo({ url: "/pages/profile/edit" });
+  };
+
   return (
     <View className="flex items-center justify-between px-4 py-3 shadow-sm bg-m3-surfaceContainer">
       <View className="flex items-center">
@@ -12,8 +17,11 @@ const UserInfoCard: FC = () => {
           mode="aspectFill"
         />
         <View>
-          <Text className="text-base font-semibold text-m3-onSurface">
-            @Alice
+          <Text
+            className="text-base font-semibold underline cursor-pointer text-m3-primary"
+            onClick={handleEditProfile}
+          >
+            Alice
           </Text>
         </View>
       </View>
