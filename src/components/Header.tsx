@@ -167,17 +167,18 @@ const Header: React.FC<HeaderProps> = ({
       />
       <View className="w-full" style={navigationStyle}>
         <View className="flex items-center" style={navBarLeftStyle}>
-          {back ? (
-            <Text
-              className="text-base text-m3-primary"
-              style={{ lineHeight: `${systemInfo.capsulePosition.height}px` }}
-              onClick={handleBack}
-            >
-              &lt; 返回
-            </Text>
-          ) : (
+          {searchBar ? (
             <HeaderSearch width={systemInfo.capsulePosition.width * 0.8} />
-          )}
+          ) : back ? (
+            <View
+              onClick={handleBack}
+              className="flex items-center text-m3-primary"
+              style={{ lineHeight: `${systemInfo.capsulePosition.height}px` }}
+            >
+              <IconFont name="arrow_back" size={35} color="#6750A4" />
+              <Text className="ml-1 text-base font-mediumm">返回</Text>
+            </View>
+          ) : null}
         </View>
         <View
           className="flex items-center justify-center flex-1"
@@ -217,7 +218,7 @@ export function HeaderSearch({ width = 120 }: { width?: number }) {
       <IconFont
         name="search"
         size={35}
-        color="#79747E" // m3-outline
+        color="#79747E"
         style={{ display: "block" }}
       />
       <Input

@@ -71,10 +71,10 @@ module.exports = {
         xl: "1rem", // 更柔和的卡片圆角风格
       },
     },
-  },
-  corePlugins: {
-    // 小程序不需要 preflight，因为这主要是给 h5 的，如果你要同时开发多端，你应该使用 process.env.TARO_ENV 环境变量来控制它
-    preflight: false,
+    corePlugins: {
+      // 小程序不需要 preflight，因为这主要是给 h5 的，如果你要同时开发多端，你应该使用 process.env.TARO_ENV 环境变量来控制它
+      preflight: false,
+    },
   },
   plugins: [],
 };

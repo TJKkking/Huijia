@@ -1,8 +1,10 @@
-import { View, Text } from "@tarojs/components";
+import { View, Text, Image } from "@tarojs/components";
 import IconFont from "@/components/iconfont";
 import classNames from "classnames";
+import Taro from "@tarojs/taro";
 
-interface PostCardProps {
+export interface PostCardProps {
+  id?: string;
   avatar?: string;
   author: string;
   tag: string;
@@ -32,17 +34,28 @@ export default function PostCard({
 
   return (
     <View
+      onClick={() =>
+        Taro.navigateTo({ url: `/pages/post-detail/index?id=${id}` })
+      }
       className={classNames(
-        "rounded-2xl shadow-sm px-4 py-3 mb-3 bg-m3-surface dark:bg-m3-dark-surface",
+        "rounded-2xl shadow-sm px-4 py-3 bg-m3-surface dark:bg-m3-dark-surface",
         className
       )}
     >
       {/* 顶部作者信息 */}
       <View className="flex items-center justify-between">
-        <View className="flex items-center space-x-2">
-          <View className="flex items-center justify-center w-8 h-8 text-sm rounded-full bg-m3-primaryContainer text-m3-onPrimaryContainer dark:bg-m3-dark-primaryContainer dark:text-m3-dark-onPrimaryContainer">
-            {avatar || author[0] || "A"}
-          </View>
+        <View className="flex items-center gap-x-2">
+          {avatar ? (
+            <Image
+              src={avatar}
+              className="w-8 h-8 bg-gray-300 rounded-full"
+              mode="aspectFill"
+            />
+          ) : (
+            <View className="flex items-center justify-center w-8 h-8 text-sm rounded-full bg-m3-primaryContainer text-m3-onPrimaryContainer dark:bg-m3-dark-primaryContainer dark:text-m3-dark-onPrimaryContainer">
+              {author[0] || "A"}
+            </View>
+          )}
           <View className="flex flex-col leading-tight">
             <Text className="text-sm font-medium text-m3-onSurface dark:text-m3-dark-onSurface">
               {author}
@@ -52,7 +65,7 @@ export default function PostCard({
             </Text>
           </View>
         </View>
-        <View className="flex items-center space-x-1 text-sm text-m3-outline dark:text-m3-dark-outline">
+        <View className="flex items-center text-xs gap-x-1 text-m3-outline dark:text-m3-dark-outline">
           <Text>{starred}</Text>
           <IconFont name="star" size={iconSize} color={iconColor} />
         </View>
@@ -63,24 +76,26 @@ export default function PostCard({
         <Text className="mb-1 text-base font-semibold text-m3-onSurface dark:text-m3-dark-onSurface">
           {title}
         </Text>
-        <Text className="mt-1 text-sm leading-snug text-m3-onSurfaceVariant dark:text-m3-dark-onSurfaceVariant line-clamp-2">
+        <Text className="text-sm leading-snug text-m3-onSurfaceVariant dark:text-m3-dark-onSurfaceVariant line-clamp-2">
           {content}
         </Text>
       </View>
 
       {/* 操作栏 */}
       <View className="flex items-center justify-between mt-3 text-sm text-m3-outline dark:text-m3-dark-outline">
-        <View className="flex space-x-4">
-          <View className="flex items-center space-x-1">
+        <View className="flex gap-x-4">
+          <View className="flex items-center gap-x-1">
             <IconFont name="favorite" size={iconSize} color={iconColor} />
             <Text>{liked}</Text>
           </View>
-          <View className="flex items-center space-x-1">
+          <View className="flex items-center gap-x-1">
             <IconFont name="comment" size={iconSize} color={iconColor} />
             <Text>{commented}</Text>
           </View>
         </View>
-        <Text>{time}</Text>
+        <Text className="text-xs text-m3-outline dark:text-m3-dark-outline whitespace-nowrap">
+          {time}
+        </Text>
       </View>
     </View>
   );
